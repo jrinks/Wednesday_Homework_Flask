@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>Add a Product</h4>
+
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <fieldset>
+            {{ form.name.label }}
+            {{ form.name(class='form-control', placeholder='Name') }}
+        </fieldset>
+        <fieldset>
+            {{ form.description.label }}
+            {{ form.description(class='form-control', placeholder='Product Description') }}
+        </fieldset>
+        <fieldset>
+            {{ form.price.label }}
+            {{ form.price(class='form-control', placeholder='Product Price') }}
+        </fieldset>
+        <fieldset>
+            {{ form.image.label }}
+            {{ form.image(class='form-control', placeholder='Image URL') }}
+        </fieldset>
+        {{ form.submit(class='btn btn-primary') }}
+    </div>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+#make a venv
+python -m venv venv
+#activate a venv 
+venv\Scripts\activate
+pip install -r requirements.txt
+make a .env  
+make a new empty database on elephantsql
+put the url in your .env along with other stuff: 
+    FLASK_APP=run.py
+    FLASK_ENV=development
+
+Flask run
+
+go to ElephantSQL and create a new empty database, grab the database url from there
+and add it to your .env and make sure to use DATABASE_URL= "postgresql..... as in , add thd ql to the end of postgres.  Also make sure your url doesn't have hidden password in it
+
+run: flask db init //this creates your migrations folder
+(if you have a migrations folder already you'll want to delete it first to start from the beginning again)
+run: flask db migrate //this detects your tables and stuff
+run: flask db upgrade //this will look for any models you've defined and will create them
+
+if you ever need to delete the versioning info from your database  
+delete from alembic_version

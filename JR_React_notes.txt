@@ -1,0 +1,161 @@
+https://medium.com/@itIsMadhavan/reactjs-props-vs-state-ff3a7680930d
+
+make sure you have npm   which is similar to python's Pip
+npx comes with npm and we will use npx to built our react project
+npx is a package used to execute pacakges
+(npm is a package that installs packages)
+
+npx create-react-app intro-to-react
+
+once your project is created, cd into the folder and type "npom start"
+
+package-lock.json is like your requirements folder in flask
+package.json is like 
+
+src has all your js css execute
+the function app returns a div with "class name" of app
+"class name" is used here (its technically JSS code) so that it doesn't get confused
+
+public has your index.html
+inside your index.htmo, the div tha thas id=root, this is where all your stuff will go. Your index.js you have a react dom render which will renter to the root. 
+
+clear everything in your app.js and then type rcc+enter to get a new template
+
+in your render method, put it a hello world
+
+
+Now get the css link href from the Bootsrap 5 website and drop it in your html header
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+you also need to link to the bootrap js file so paste this at the bottom of the index.html in the body 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
+Brian says remove the crossorigin="anonymous" from both these links
+
+Also get rid of the "integrity" part of those links
+
+
+/////
+Now lets add a nav bar.  This is going to be a new "component" A component is a class object.  So, create a new folder inside your src folder.
+
+call it Navbar.js 
+
+then paste a bootstrap navbar template. Get rid of the search and dropdown cuz you don't need 'ElJ19smozuHV6z3Iehds
+
+//////// React Router Dom - lets us easily make single page applications
+
+We'll use a "switch"...
+
+to get started, install by typing in your termial  "npm i react-router-dom"
+
+inside src create new folder "views"
+Views will hold our individual page info
+(components tend to hold smaller elements like a nav bar that might appear on one page)
+
+Create new file Home.js inside the Views folder
+
+in Views create a new file "About.js"
+This will be our websites "about" page
+
+so now we want to add them to our app.js
+
+We will need to import Switch.  and Route. Do this by puting this at the top of your app.js file 
+import {Switch, Route} from 'react-router-dom';
+
+Add the Route ( and maybe Switch??) tags to index.js 
+
+Add this to the top of your index.js file
+import {BrowserRouter as Router} from 'react-router-dom';
+
+and also in index.js surround the <app> with the <Route> tags
+
+NOw go to your nav.js
+We are going to update the <a> tags.  First we will change <a> tag to link tags. First first you have to import {link} from react-router_dom;
+
+then change <a> to <Link> 
+and change href= to "to="
+to='/'Home
+
+
+The Component Life Cycle- 
+now go to your app.js
+add this 
+ constructor(){
+      super();
+
+      this.state = {
+        name: 'Jessica'
+        age: 41
+      }
+  }
+
+This is the order of the components lifecycle:
+constructor
+render
+componentDidMount
+this.state
+
+If our state changes, it will re-render. 
+
+https://reactjs.org/docs/state-and-lifecycle.html
+
+
+The concept of "props"
+On the component class, each class a property called props... this.props.  .... 
+
+
+////some stuff in here I missed
+
+/////Working with an API  
+http://ergast.com/api/f1/2020/1/driverSTandings.json
+
+In your app.js create a new method
+update your constructon on app.js
+
+under "this.state" put "racers: []"
+under componentDidMount add: 
+fetch(http://ergast.com/api/f1/2020/1/driverStandings.json)
+.then(res => res.json())
+.then(data => console.log(data))
+
+the above will return the full object from http://ergast.com/api/f1/2020/1/driverStandings.json as a json 
+
+.then(data => {
+    this.setState{
+        {driverdata.MRData.StandingsTable.Standings
+        
+
+on homepage  add Hello, {this.props.kevinName), this is a homepage}
+
+{racers.map(racer. index)=> (
+    (<DriverInfo racer={racer} index={index})
+)}
+
+
+go to your components create new file called "driverinf.js"   start with rcc + enter.  Then replace the <div> with <tr> for "table row" 
+and then inside the 
+
+
+const racer = this.props.racer
+<tr key={this.props.racer}}>
+<td> (racer.position) </td>
+<td> (racer.points) </td>
+<td> (racer.wins) </td>
+<td> (racer.driverGivenname) </td>
+<td> (racer.....) </td>
+<td> (racer.....) </td>
+<td> (racer.....) </td>
+
+</tr>
+
+also on your homepage add a <tale className='table table-striped'> element 
+<thead>
+
+</thead>
+<tbody>
+(racers.map........)
+</tbody>
+
+then add <tr> put the column names here </tr> on your app.js page. 
